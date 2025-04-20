@@ -1,0 +1,93 @@
+\documentclass[11pt]{report}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{pmboxdraw}
+
+\usepackage[left=0.75in, right=0.75in, top=0.75in, bottom=1.5in]{geometry}
+
+% bibliography management system using biblatex; backend: biber; citation style: IEEE
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+\renewbibmacro*{finentry}{
+    \iffieldundef{annotation}
+        {}
+        {\par\smallskip\textit{Annotation:} \printfield{annotation}}
+    \finentry
+}
+
+\author{Hollie-Mae Boittiaux}
+
+\setlength{\headheight}{34pt}
+\newcommand{\header}{\vspace{-10pt}\rule{\textwidth}{0.4pt}}
+\setlength{\footskip}{33pt}
+
+% pages which start on a chapter
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[L]{\header}
+    \fancyfoot[C]{
+    \makebox[\textwidth]{
+      \rule[3pt]{0.425\textwidth}{0.6pt} 
+      \hspace{4pt} 
+      Page \thepage\ of \pageref{LastPage} 
+      \hspace{4pt} 
+      \rule[3pt]{0.425\textwidth}{0.6pt}
+    }
+  }
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% pages which do not start on a chapter
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\header}
+\fancyfoot[C]{
+    \makebox[\textwidth]{
+      \rule[3pt]{0.425\textwidth}{0.6pt} 
+      \hspace{4pt} 
+      Page \thepage\ of \pageref{LastPage} 
+      \hspace{4pt} 
+      \rule[3pt]{0.425\textwidth}{0.6pt}
+    }
+  }
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\chapter}[hang]
+  {\normalfont\huge\bfseries}{\thechapter}{16pt}{\huge}
+\titlespacing*{\chapter}{0pt}{-10pt}{22pt}
+
+\definecolor{custom-grey}{HTML}{ECECEC}
+\newtcbox{\inlinecode}{on line, 
+  boxsep=0pt, 
+  left=2pt, right=2pt, 
+  top=0pt, bottom=0pt, 
+  colframe=custom-grey, colback=custom-grey, 
+  arc=4pt, boxrule=0pt
+}
+
+\begin{document}
+
+\begin{titlepage}
+    {\large Mae Boittiaux \par}
+    {\huge LINDENMAYER SYSTEM \par}
+\end{titlepage}
+
+\tableofcontents
+
+\cite{example-cite}
+
+\clearpage
+\printbibliography
+
+\end{document}
